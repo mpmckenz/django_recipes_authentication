@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+    </head>
+    <body>
+        {% for element in recipes %}
+        <h1>{{ element.title }}</h1>
+        <p>by {{ element.author }}</p>
+        <p>Description: {{ element.description }}</p>
+        <p>Time: {{ element.time_req }}</p>
+
+        <!-- <pre>{{ element.instructions }}</pre> -->
+        <p>Instructions:</p>
+        {{ spaceless }}
+        <ol>
+            {% for obj in recipes %}
+            <li>{{ obj.instructions | linebreaksbr }}</li>
+            {% endfor %}
+        </ol>
+        {{ endspaceless }}
+        {% endfor %}
+    </body>
+</html>
