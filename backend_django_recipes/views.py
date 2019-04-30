@@ -12,7 +12,8 @@ def list_view(request):
 def recipe_detail(request, id):
     html = "recipe_detail.html"
     items = Recipes.objects.all().filter(id=id)
-    return render(request, html, {"recipes": items})
+    instructions = items[0].instructions.split("\n")
+    return render(request, html, {"recipes": items, "instructions": instructions})
 
 
 def author_detail(request, id):

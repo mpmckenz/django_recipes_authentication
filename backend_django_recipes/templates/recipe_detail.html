@@ -9,19 +9,20 @@
     <body>
         {% for element in recipes %}
         <h1>{{ element.title }}</h1>
-        <p>by <a href="/author/{{ element.author_id }}">{{ element.author }}</a></p>
-        <p>Description: {{ element.description }}</p>
-        <p>Time: {{ element.time_req }}</p>
+        <p>
+            <strong>Chef Extraordinaire:</strong>
+            <a href="/author/{{ element.author_id }}">{{ element.author }}</a>
+        </p>
+        <p><strong>Description:</strong> {{ element.description }}</p>
+        <p><strong>Time:</strong> {{ element.time_req }}</p>
 
         <!-- <pre>{{ element.instructions }}</pre> -->
-        <p>Instructions:</p>
-        {{ spaceless }}
+        <p><strong>Instructions:</strong></p>
         <ol>
-            {% for obj in recipes %}
-            <li>{{ obj.instructions | linebreaksbr }}</li>
+            {% for obj in instructions %}
+            <li>{{ obj }}</li>
             {% endfor %}
         </ol>
-        {{ endspaceless }}
         {% endfor %}
 
         <a href="/">Go Home</a>
