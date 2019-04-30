@@ -9,7 +9,7 @@
     <body>
         {% for element in recipes %}
         <h1>{{ element.title }}</h1>
-        <p>by {{ element.author }}</p>
+        <p>by <a href="/author/{{ element.author_id }}">{{ element.author }}</a></p>
         <p>Description: {{ element.description }}</p>
         <p>Time: {{ element.time_req }}</p>
 
@@ -23,5 +23,7 @@
         </ol>
         {{ endspaceless }}
         {% endfor %}
+
+        <a href="/">Go Home</a>
     </body>
 </html>
