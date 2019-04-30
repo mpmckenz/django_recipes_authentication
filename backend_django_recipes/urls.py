@@ -18,7 +18,8 @@ from backend_django_recipes.models import Author
 from backend_django_recipes.models import Recipes
 from django.contrib import admin
 from django.urls import path
-from backend_django_recipes.views import list_view, author_detail, recipe_detail
+from backend_django_recipes.views import (
+    list_view, author_detail, recipe_detail)
 
 admin.site.register(Author)
 admin.site.register(Recipes)
