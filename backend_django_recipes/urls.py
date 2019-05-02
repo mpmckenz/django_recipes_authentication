@@ -19,7 +19,7 @@ from backend_django_recipes.models import Recipes
 from django.contrib import admin
 from django.urls import path
 from backend_django_recipes.views import (
-    list_view, author_detail, recipe_detail)
+    list_view, author_detail, recipe_detail, add_author, add_recipe)
 
 admin.site.register(Author)
 admin.site.register(Recipes)
@@ -28,5 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", list_view),
     path("author/<int:id>", author_detail),
-    path("recipes/<int:id>", recipe_detail)
+    path("recipes/<int:id>", recipe_detail),
+    path("addrecipes", add_recipe),
+    path("addauthors", add_author),
 ]
