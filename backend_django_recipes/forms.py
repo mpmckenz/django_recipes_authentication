@@ -1,13 +1,12 @@
 from django import forms
-from backend_django_recipes.models import Author, Recipes
+from backend_django_recipes.models import Author
 
 
-class AuthorForm(forms.Form):
-    pass
-
-    # name = models.CharField(max_length=50)
-    # bio = models.TextField()
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+class AuthorsForm(forms.Form):
+    name = forms.CharField(max_length=50)
+    bio = forms.CharField(widget=forms.Textarea)
+    exclude = ["user"]
+    # user = forms.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class RecipesForm(forms.Form):
