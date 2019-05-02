@@ -29,6 +29,6 @@ urlpatterns = [
     path("", list_view),
     path("author/<int:id>", author_detail),
     path("recipes/<int:id>", recipe_detail),
-    path("addrecipes", add_recipe),
-    path("addauthors", add_author),
+    path("addrecipe", add_recipe),
+    path("addauthor", add_author),
 ]

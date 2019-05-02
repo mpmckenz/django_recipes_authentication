@@ -1,7 +1,8 @@
 from django.shortcuts import render
 # ^^^ djnago has lots of imports and packages, so collect most common and put in shortcuts
 from backend_django_recipes.models import Recipes, Author
-from backend_django_recipes.forms import AuthorForm, RecipesForm
+from backend_django_recipes.forms import AuthorsForm, RecipesForm
+from django.contrib.auth.models import User
 
 
 def list_view(request):
@@ -46,4 +47,19 @@ def author_detail(request, id):
 
 
 def add_author(request):
-    pass
+    html = "add_author.html"
+    form = None
+    if request.method == "POST":
+        form = AuthorsForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = User.objects.create(username=data["name"])
+            Author.objects.create(
+                name=data["name"],
+                bio=data["bio"],
+                user=user
+            )
+        return render(request, "added_author.html")
+    else:
+        form = AuthorsForm()
+    return render(request, html, {"form": form})
