@@ -1,7 +1,45 @@
-h1 {
-    color: orange
+html {
+    width: 100%;
+    height: auto;
+    background-color: rgba(255, 0, 119, 0.15);
+    background-image: url(dance.gif);
+    background-position: center;
+    background-repeat: repeat;
+}
+body {
+    background-color: rgba(245, 222, 179, 0.5);
+    border: dashed 10px #ffdb58;
+    font-size: 150%;
 }
 
-button {
-    /* background-color: pink */
+h1 {
+    text-align: center;
+    color: #ce2522;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+h2 {
+    color: #a1c935;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+a {
+    color: rgb(93, 38, 6);
+}
+a:hover {
+    color: #8a1422;
+}
+
+strong {
+    color: rgb(85, 110, 60);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+button, input#button {
+    background-color: dodgerblue;
+    border-radius: 6px;
+    font-size: 130%;
 }
