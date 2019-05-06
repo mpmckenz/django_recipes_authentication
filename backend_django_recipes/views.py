@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse, HttpResponseRedirect
 # ^^^ djnago has lots of imports and packages, so collect most common and put in shortcuts
 from backend_django_recipes.models import Recipes, Author
-from backend_django_recipes.forms import AuthorsForm, RecipesForm
+from backend_django_recipes.forms import (
+    AuthorsForm, RecipesForm, AddAuthorForm, LoginForm)
 from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
 
 
 def list_view(request):
@@ -19,6 +22,7 @@ def recipe_detail(request, id):
                   {"recipes": items, "instructions": instructions})
 
 
+@login_required()
 def add_recipe(request):
     html = "add_recipe.html"
     form = None
@@ -46,20 +50,44 @@ def author_detail(request, id):
     return render(request, html, {"authors": authors, "recipes": items})
 
 
+@login_required
+# add second for authentication?
+# AKA SIGNUP
 def add_author(request):
     html = "add_author.html"
     form = None
     if request.method == "POST":
-        form = AuthorsForm(request.POST)
+        form = AddAuthorsForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = User.objects.create(username=data["name"])
+            user = User.objects.create_user(
+                data["username"], data["email"], data["password"])
             Author.objects.create(
                 name=data["name"],
                 bio=data["bio"],
                 user=user
             )
-        return render(request, "added_author.html")
+            return render(request, "added_author.html")
     else:
         form = AuthorsForm()
     return render(request, html, {"form": form})
+
+
+def login_view(request):
+    html = "login_view.html"
+    form = None
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data()
+            user = authenticate(username=data["username"], password=data["password"])
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(request.GET.get("next", "/"))
+    else:
+        form = LoginForm()
+    return render(request, html, {"form": form})
+
+
+def logout_view(request):
+    pass

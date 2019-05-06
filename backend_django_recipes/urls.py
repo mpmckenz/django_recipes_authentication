@@ -14,21 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from backend_django_recipes.models import Author
-from backend_django_recipes.models import Recipes
+from backend_django_recipes.models import Author, Recipes
 from django.contrib import admin
 from django.urls import path
 from backend_django_recipes.views import (
-    list_view, author_detail, recipe_detail, add_author, add_recipe)
+    list_view, author_detail, recipe_detail, add_author, add_recipe,
+    login_view, logout_view)
 
 admin.site.register(Author)
 admin.site.register(Recipes)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", list_view),
+    path("", list_view, name="homepage"),
     path("author/<int:id>/", author_detail),
     path("recipes/<int:id>/", recipe_detail),
     path("addrecipe/", add_recipe),
     path("addauthor/", add_author),
+    path("login/", login_view), 
+    path("logout/", logout_view)
 ]

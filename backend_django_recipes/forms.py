@@ -5,7 +5,7 @@ from backend_django_recipes.models import Author
 class AuthorsForm(forms.Form):
     name = forms.CharField(max_length=50)
     bio = forms.CharField(widget=forms.Textarea)
-    exclude = ["user"]
+    # exclude = ["user"]
     # user = forms.OneToOneField(User, on_delete=models.CASCADE)
 
 
@@ -15,3 +15,15 @@ class RecipesForm(forms.Form):
     description = forms.CharField(max_length=140)
     time_req = forms.CharField(max_length=25)
     instructions = forms.CharField(widget=forms.Textarea)
+
+
+class AddAuthorForm(forms.Form):
+    name = forms.CharField(max_length=500)
+    username = forms.CharField(max_length=50)
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput())
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(widget=forms.PasswordInput())
