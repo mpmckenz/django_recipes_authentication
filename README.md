@@ -1,5 +1,5 @@
 <p align="center">
- <img src=npt.jpg/>
+ <img src=try.png/>
 </p>
 
 # Django Recipebox: Forms!
