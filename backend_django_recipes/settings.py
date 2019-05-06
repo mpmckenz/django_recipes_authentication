@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "backend_django_recipes"
+    'backend_django_recipes'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'backend_django_recipes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "backend_django_recipes", "templates")],
+        'DIRS': [os.path.join(BASE_DIR, 'backend_django_recipes', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,8 +121,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static'),
     # '/var/www/static/',
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticness")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticness")

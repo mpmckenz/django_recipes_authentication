@@ -11,7 +11,7 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="../static/style.css" />
+        <link rel="stylesheet" href="{% static 'backend_django_recipes/style.css' %}" />
         <title>Glossary</title>
     </head>
     <body>
@@ -20,13 +20,13 @@
         <ul>
             {% for rec in list %}
             <li>
-                <a href="recipes/{{ rec.id }}">{{ rec.title }}</a>
+                <a href="recipes/{{ rec.id }}/">{{ rec.title }}</a>
             </li>
             {% endfor %}
         </ul>
         <div class="row justify-content-center">
-            <a href="/addrecipe"><button>Add a Recipe</button></a>
-            <a href="/addauthor"><button>Add an Author</button></a>
+            <a href="/addrecipe/"><button>Add a Recipe</button></a>
+            <a href="/addauthor/"><button>Add an Author</button></a>
         </div>
     </body>
 </html>

@@ -11,7 +11,7 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="../static/style.css" />
+        <link rel="stylesheet" href="{% static 'backend_django_recipes/style.css' %}" />
         <title>About the Recipe</title>
     </head>
     <body>
@@ -23,7 +23,7 @@
             <div class="row justify-content-md-center">
                 <div class="col-md-4">
                     <strong>Chef Extraordinaire:</strong>
-                    <a href="/author/{{ element.author_id }}">
+                    <a href="/author/{{ element.author_id }}/">
                         {{ element.author }}
                     </a>
                 </div>
