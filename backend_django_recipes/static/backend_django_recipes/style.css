@@ -6,10 +6,14 @@ html {
     background-position: center;
     background-repeat: repeat;
 }
+
 body {
     background-color: rgba(245, 222, 179, 0.5);
     border: dashed 10px #ffdb58;
     font-size: 150%;
+    width: 90%;
+    margin: 0 auto;
+    height: auto;
 }
 
 h1 {
@@ -21,6 +25,13 @@ h1 {
 
 h2 {
     color: #a1c935;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+h3 {
+    text-align: center;
+    color: white;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
@@ -38,7 +49,8 @@ strong {
     -webkit-text-stroke-color: black;
 }
 
-button, input#button {
+button,
+input#button {
     background-color: dodgerblue;
     border-radius: 6px;
     font-size: 130%;
