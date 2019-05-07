@@ -6,6 +6,8 @@ from backend_django_recipes.forms import (
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
 
 
 def list_view(request):
@@ -50,7 +52,8 @@ def author_detail(request, id):
     return render(request, html, {"authors": authors, "recipes": items})
 
 
-# @login_required
+@login_required()
+@staff_member_required()
 # add second for authentication?
 # AKA SIGNUP
 def add_author(request):
@@ -81,7 +84,8 @@ def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            data = form.cleaned_data.get()
+            # data = form.cleaned_data.get()
+            data = form.cleaned_data
             user = authenticate(
                 username=data["username"], password=data["password"])
             if user is not None:
@@ -93,5 +97,8 @@ def login_view(request):
 
 
 def logout_view(request):
-    logout(request, user)
-    return render(request, "logout_view.html")
+    html = "logout_view.html"
+    logout(request)
+    messages.info(request, "So long, sucker!")
+    # return render(request, html)
+    return HttpResponseRedirect(reverse("homepage"))
