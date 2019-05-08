@@ -32,8 +32,21 @@ def add_recipe(request):
         form = RecipesForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            # if not request.user.is_staff:
+            #     author = data["author"]
+            # else:
+            #     author = request.user.author
+            # if request.user.is_staff:
+            #     author = data["author"]
+            # else:
+            #     author = request.user.author
+            # try:
+            #     author = data["author"]
+            # except:
+            #     author = request.user.author
             Recipes.objects.create(
                 title=data["title"],
+                # author=author,
                 author=data["author"],
                 description=data["description"],
                 time_req=data["time_req"],
@@ -42,6 +55,9 @@ def add_recipe(request):
         return render(request, "added_recipe.html")
     else:
         form = RecipesForm()
+        if not request.user.is_staff:
+            form.author = request.user
+            # form.fields["author"] = request.user
     return render(request, html, {"form": form})
 
 
