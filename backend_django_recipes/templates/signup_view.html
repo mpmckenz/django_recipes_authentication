@@ -15,15 +15,15 @@
             rel="stylesheet"
             href="{% static 'backend_django_recipes/style.css' %}"
         />
-        <title>Login</title>
+        <title>Signup</title>
     </head>
     <body>
-        <h1>Login</h1>
+        <h1>Signup</h1>
         <br>
         <form action="" method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit" value="Login" id="button" />
+            <input type="submit" value="Signup" id="button" />
         </form>
     </body>
 </html>
