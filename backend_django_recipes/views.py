@@ -2,7 +2,7 @@ from django.shortcuts import render, reverse, HttpResponseRedirect
 # ^^^ djnago has lots of imports and packages, so collect most common and put in shortcuts
 from backend_django_recipes.models import Recipes, Author
 from backend_django_recipes.forms import (
-    AuthorsForm, RecipesForm, LoginForm)
+    AuthorsForm, RecipesForm, LoginForm, SignupForm)
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -63,6 +63,25 @@ def add_author(request):
         form = AuthorsForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
+            user = User.objects.create(username=data["name"])
+            Author.objects.create(
+                name=data["name"],
+                bio=data["bio"],
+                user=user
+            )
+        return render(request, "added_author.html")
+    else:
+        form = AuthorsForm()
+    return render(request, html, {"form": form})
+
+
+def signup_view(request):
+    html = "signup_view.html"
+    form = None
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
             user = User.objects.create_user(
                 data["username"], data["email"], data["password"])
             login(request, user)
@@ -74,7 +93,7 @@ def add_author(request):
             # return render(request, "added_author.html")
             return HttpResponseRedirect(reverse("homepage"))
     else:
-        form = AuthorsForm()
+        form = SignupForm()
     return render(request, html, {"form": form})
 
 
