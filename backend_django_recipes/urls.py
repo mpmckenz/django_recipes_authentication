@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from backend_django_recipes.views import (
     list_view, author_detail, recipe_detail, add_author, add_recipe,
-    login_view, logout_view, signup_view)
+    login_view, logout_view, signup_view, edit_recipe, favorites, toggle_favorites)
 
 admin.site.register(Author)
 admin.site.register(Recipes)
@@ -33,5 +33,8 @@ urlpatterns = [
     path("addauthor/", add_author),
     path("signup/", signup_view),
     path("login/", login_view),
-    path("logout/", logout_view)
+    path("logout/", logout_view),
+    path("editrecipe/<int:id>/", edit_recipe),
+    path("favorites/<int:id>/", favorites),
+    path("favorites_toggled/<int:id>", toggle_favorites)
 ]

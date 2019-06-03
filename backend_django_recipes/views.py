@@ -121,3 +121,50 @@ def logout_view(request):
     messages.info(request, "So long, sucker!")
     # return render(request, html)
     return HttpResponseRedirect(reverse("homepage"))
+
+
+@login_required()
+def edit_recipe(request, id):
+    html = "edit_recipe.html"
+    form = None
+    recipe = Recipes.objects.filter(id=id)
+    if request.method == "POST":
+        form = RecipesForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            recipe.update(
+                title=data["title"],
+                author=data["author"],
+                description=data["description"],
+                time_req=data["time_req"],
+                instructions=data["instructions"],
+            )
+        return render(request, "added_recipe.html")
+    else:
+        recipe = recipe.first()
+        form = RecipesForm(
+            initial={"title": recipe.title,
+                     "author": recipe.author,
+                     "description": recipe.description,
+                     "time_req": recipe.time_req,
+                     "instructions": recipe.instructions}
+        )
+    return render(request, html, {"form": form})
+
+
+def favorites(request, id):
+    html = "favorites.html"
+    author = Author.objects.filter(id=id)
+    favorite = Author.objects.filter(id=id).first().favorites.all()
+    return render(request, html, {"favorites": favorite, "author": author})
+
+
+def toggle_favorites(request, id):
+    html = "toggle_favorite.html"
+    recipe = Recipes.objects.filter(id=id).first()
+    user = Author.objects.filter(id=request.user.author.id).first()
+    if recipe not in user.favorites.get_queryset():
+        user.favorites.add(recipe)
+    else:
+        user.favorites.remove(recipe)
+    return render(request, html)

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+<html lang="en" class="d-flex h-100 align-items-center">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="{% static 'backend_django_recipes/style.css' %}"
+  /> -->
+</head>
+  <body>
+    {% for aut in author %}
+    <h2>{{ aut.name }}'s favorite recipes</h2>
+    {% endfor %} {% for favorite in favorites %}
+    <br />
+    <h1>{{ favorite.title }}</h1>
+    <br />
+    <div class="container-fluid">
+      <div class="row justify-content-md-center">
+        <div class="col-md-4">
+          <strong>Chef Extraordinaire:</strong>
+          <a href="/author/{{ favorite.author_id }}/">
+            {{ favorite.author }}
+          </a>
+        </div>
+        <div class="col-md-6">
+          <strong>Description:</strong> {{ favorite.description }}
+        </div>
+        <div class="col-md-2">
+          <strong>Time:</strong> {{ favorite.time_req }}
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <p><strong>Instructions:</strong></p>
+    <ol>
+      <li>{{ favorite.instructions }}</li>
+    </ol>
+    {% endfor %}
+    <a href="/"><button>Home</button></a>
+  </body>
+</html>

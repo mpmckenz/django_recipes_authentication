@@ -15,30 +15,10 @@
       rel="stylesheet"
       href="{% static 'backend_django_recipes/style.css' %}"
     />
-    <title>About the Author</title>
+    <title>Recipe Favorites</title>
   </head>
   <body>
-    {% for element in authors %}
-    <h1>Author: {{ element.name }}</h1>
-    <br />
-    <p><strong>About Me:</strong> {{ element.bio }}</p>
-    <br />
-
-    <p>
-      <strong>Favorites: </strong>
-      <a href="/favorites/{{ element.id }}"> Favorites</a>
-    </p>
-    {% endfor %}
-    <br />
-    <br />
-    <h2>My Recipes:</h2>
-    {% for rec in recipes %}
-    <ul>
-      <li>
-        <a href="/recipes/{{ rec.id }}/">{{ rec.title }}</a>
-      </li>
-    </ul>
-    {% endfor %}
+    <h1>Your Favorite Recipes have been updated!</h1>
     <div class="row justify-content-center">
       <a href="/"><button>Go Home</button></a>
     </div>

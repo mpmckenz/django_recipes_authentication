@@ -39,6 +39,7 @@ h3 {
 a {
     color: rgb(93, 38, 6);
 }
+
 a:hover {
     color: #8a1422;
 }
@@ -49,8 +50,7 @@ strong {
     -webkit-text-stroke-color: black;
 }
 
-button,
-input#button {
+button, input#button {
     background-color: dodgerblue;
     border-radius: 6px;
     font-size: 130%;
